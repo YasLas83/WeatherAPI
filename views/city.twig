@@ -1,0 +1,29 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+
+    <main>
+        <div class="form-container">
+        <article class="widget">
+            <form action="/add-city" method="post" class="city-form">
+    <input class="input-field" placeholder="Enter city name" type="text" id="cityName" name="cityName" required>
+    <input class="input-field" placeholder="Enter Latitude" type="number" id="latitude" name="latitude" required min="-90" max="90" step="0.000001">
+    <input class="input-field" placeholder="Enter Longitude" type="number" id="longitude" name="longitude" required min="-180" max="180" step="0.000001">
+    <div class="button-group">
+        <button class="submit-button" type="submit">Add City</button>
+        <button class="submit-button" type="button" onclick="location.href='/cities'">City List</button>
+    </div>
+    {% if success_msg %}
+        <div class="alert alert-success">{{ success_msg }}</div>
+    {% endif %}
+    
+    {% if error_msg %}
+        <div class="alert alert-danger">{{ error_msg }}</div>
+    {% endif %}
+    <p class="date">{{ "now"|date("d, F") }}</p>  
+</form>    
+            </article>
+        </div>
+    </main>
+
+{% endblock %}

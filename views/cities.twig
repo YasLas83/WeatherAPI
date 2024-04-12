@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style2.css' />
+  </head>
+  <body>
+{% block body %}
+
+<form action="/home" method="get">
+  <button type="submit">
+  Home</button>
+</form>
+
+
+<div class="container">
+  <h2>Search for a city</h2>
+  <div class="search-box">
+    <form action="/search-city" method="post">
+      <input type="text" name="searchTerm" placeholder="Enter the name of the city" class="input-field">
+      <button type="submit" class="submit-button">Search</button>
+    </form>
+  </div>
+
+  <h2>List of cities</h2>
+  <ul>
+    {% for city in cities %}
+      <li class="city-info">
+        <span class="city-info">
+        <!-- Lien cliquable pour afficher la météo de la ville -->
+        <a href="/city-weather/{{ city.id }}">{{ city.name }} - Latitude: {{ city.latitude }}, Longitude: {{ city.longitude }}</a>
+        </span>
+        
+        <!-- Formulaire de suppression pour chaque ville -->
+        <form action="/delete-city" method="post" style="display: inline;" class="delete-form">
+          <input type="hidden" name="cityName" value="{{ city.name }}">
+          <input type="hidden" name="latitude" value="{{ city.latitude }}">
+          <input type="hidden" name="longitude" value="{{ city.longitude }}">
+          <button type="submit" class="delete-button">DELETE</button>
+        </form>
+      </li>
+    {% else %}
+      <li>No cities found</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
+</body>
+</html>

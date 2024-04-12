@@ -1,0 +1,22 @@
+{% extends 'layout.twig' %}
+
+{% block body %}
+<h1>Météo pour {{ city.name }}</h1>
+<p>Mis à jour le: {{ weather.updated_at }}</p>
+
+<h2>Conditions Actuelles</h2>
+<p>Température: {{ weather.instant.air_temperature }}°C</p>
+<p>Pression de l'air au niveau de la mer: {{ weather.instant.air_pressure_at_sea_level }} hPa</p>
+<p>Humidité: {{ weather.instant.relative_humidity }}%</p>
+<p>Vitesse du vent: {{ weather.instant.wind_speed }} m/s</p>
+<p>Direction du vent: {{ weather.instant.wind_from_direction }}°</p>
+<p>Couverture nuageuse: {{ weather.instant.cloud_area_fraction }}%</p>
+<p>Point de rosée: {{ weather.instant.dew_point_temperature }}°C</p>
+
+<img src="/images/png/{{ symbolCode }}.png" alt="Icone météo">
+
+<h2>Prévisions pour les Prochaines Heures</h2>
+<p>Température maximale: {{ weather.next_6_hours.air_temperature_max }}°C</p>
+<p>Température minimale: {{ weather.next_6_hours.air_temperature_min }}°C</p>
+
+{% endblock %}
